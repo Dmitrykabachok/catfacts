@@ -1,11 +1,9 @@
-package com.example.catfacts
+package com.example.catfacts.serverfiles
 
 import android.util.Log
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.spec.ECField
 
 object Server {
     val gson = GsonBuilder().setLenient().create()
@@ -23,7 +21,7 @@ object Server {
         .addConverterFactory(GsonConverterFactory.create())
         .build().create(Api::class.java)
 
-    suspend fun getFact(): Fact{
+    suspend fun getFact(): Fact {
         try {
 
             return api.getFact()
@@ -48,6 +46,8 @@ object Server {
 
     suspend fun getFacts(): Facts {
         try {
+
+            Log.d("Server_works","Api_get_data")
             return factsApi.getFacts()
         }
         catch (e: Exception){

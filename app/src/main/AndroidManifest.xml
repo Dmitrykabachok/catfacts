@@ -12,16 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatFacts">
         <activity
-            android:name=".MainActivity2"
-            android:label="@string/title_activity_main2"
+            android:name=".FactActivity"
+            android:label="@string/title_activity_fact"
             android:theme="@style/Theme.CatFacts.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.CatFacts.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

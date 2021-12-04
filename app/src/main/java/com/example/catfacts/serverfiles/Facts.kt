@@ -1,4 +1,4 @@
-package com.example.catfacts
+package com.example.catfacts.serverfiles
 
 import com.google.gson.annotations.SerializedName
 

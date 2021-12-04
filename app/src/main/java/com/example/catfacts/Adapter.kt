@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.withContext
+import com.example.catfacts.serverfiles.CatImage
+import com.example.catfacts.serverfiles.Fact
 
-class Adapter(private val catFacts: List<Fact>, private val listener:(Any) -> Unit) : RecyclerView.Adapter<Adapter.CatHolder>() {
-
+class Adapter( private val listener:(Any) -> Unit) : RecyclerView.Adapter<Adapter.CatHolder>() {
+    private var catFacts: List<Fact> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatHolder {
         val itemView =
             LayoutInflater.from(parent.context)
@@ -19,6 +20,7 @@ class Adapter(private val catFacts: List<Fact>, private val listener:(Any) -> Un
     }
 
     override fun onBindViewHolder(holder: CatHolder, position: Int) {
+
         holder.text.text = catFacts[position].fact
         holder.openButton.setOnClickListener{
             listener(catFacts[position].fact)
@@ -31,6 +33,7 @@ class Adapter(private val catFacts: List<Fact>, private val listener:(Any) -> Un
 
 
     class CatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val text: TextView = itemView.findViewById<TextView>(R.id.factView)
         val openButton: Button = itemView.findViewById<Button>(R.id.openButton)
         fun bind(fact: Fact, catImage: CatImage) {
@@ -38,6 +41,10 @@ class Adapter(private val catFacts: List<Fact>, private val listener:(Any) -> Un
 
 
     }
-
+    fun setData(data: List<Fact>) {
+        Log.d("setData", "data$data")
+        this.catFacts = data
+        notifyDataSetChanged()
+    }
 
 }
