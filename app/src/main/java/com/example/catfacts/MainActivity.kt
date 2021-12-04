@@ -8,15 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.catfacts.Adapter
 import com.example.catfacts.serverfiles.Fact
-import com.example.catfacts.R
-import com.example.catfacts.serverfiles.Server
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import com.example.catfacts.fragments.NewFragment
 import com.example.catfacts.viewmodels.MyViewModel
 
