@@ -3,6 +3,8 @@ package com.example.catfacts
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.RelativeLayout
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var pullToRefresh: SwipeRefreshLayout
     lateinit var recyclerViewAdapter: Adapter
+    lateinit var progressBar:RelativeLayout
     val viewModel = MyViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.catFactsList.observe(this, { model -> Log.d("Loading_facts","data${model}");
             recyclerViewAdapter.setData(model)
         })
+
+        viewModel.factsLoadingStatus.observe(this, {model -> if(model){ progressBar.visibility = View.GONE} })
         pullToRefresh.setOnRefreshListener {
             viewModel.loadFacts()
             pullToRefresh.isRefreshing = false
@@ -67,7 +72,7 @@ private fun initViews() {
         recyclerViewAdapter = Adapter { data -> sendMessage("data as String") }
         Log.d("adapter_init","data${recyclerViewAdapter.javaClass}")
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        progressBar = findViewById(R.id.loadingPanel)
     }
 }
 
